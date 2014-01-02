@@ -1,6 +1,5 @@
 set :stage, :vagrant
-#set :unicorn_config_rel_path, "config/unicorn"
-#set :unicorn_config_filename, "vagrant.rb"
+set :unicorn_env, "vagrant"
 
 role :app, %w{vagrant@127.0.0.1}
 role :web, %w{vagrant@127.0.0.1}
