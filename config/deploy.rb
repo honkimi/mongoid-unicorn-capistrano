@@ -1,5 +1,8 @@
+require 'capistrano-unicorn'
+require 'capistrano/rbenv'
+
 set :application, 'mongoid-unicorn-capistrano'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :repo_url, 'https://github.com/honkimi/mongoid-unicorn-capistrano.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
