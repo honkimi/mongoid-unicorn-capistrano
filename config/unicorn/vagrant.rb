@@ -5,7 +5,8 @@ app_path = "/var/www/current"
 worker_processes 1
 preload_app true
 timeout 180
-listen "127.0.0.1:9000"
+listen "/tmp/unicorn.app.sock"
+pid "#{app_path}/tmp/pids/unicorn.pid"
 
 # Spawn unicorn master worker for user apps (group: apps)
 user 'unicorn', 'unicorn' 
@@ -17,11 +18,9 @@ working_directory app_path
 rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Log everything to one file
-stderr_path "log/unicorn.log"
-stdout_path "log/unicorn.log"
+stderr_path "/var/log/unicorn/error.log"
+stdout_path "/var/log/unicorn/sdtout.log"
 
-# Set master PID location
-pid "#{app_path}/tmp/pids/unicorn.pid"
 
 before_fork do |server, worker|
   old_pid = "#{server.config[:pid]}.oldbin"
@@ -33,4 +32,5 @@ before_fork do |server, worker|
     end
   end
 end
+
 
