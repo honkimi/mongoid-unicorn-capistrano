@@ -18,8 +18,8 @@ working_directory app_path
 rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Log everything to one file
-stderr_path "/var/log/unicorn/error.log"
-stdout_path "/var/log/unicorn/sdtout.log"
+stderr_path "log/unicorn.log"
+stdout_path "log/unicorn.log"
 
 
 before_fork do |server, worker|
