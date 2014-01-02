@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/inbeom/capistrano-unicorn.git
+  revision: a91700efb1222567d1baee9ada45b04716a54b63
+  branch: capistrano3
+  specs:
+    capistrano-unicorn (0.3.0)
+      capistrano (~> 3.0.0)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 221abac035d44d9ee4d629c5a316b168a9be0540
   specs:
@@ -47,11 +55,12 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
+    capistrano-bundler (1.1.1)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2.0)
     capistrano-rbenv (2.0.0)
       capistrano (~> 3.0)
       sshkit (~> 1.2.0)
-    capistrano-unicorn (0.1.10)
-      capistrano
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -182,8 +191,9 @@ DEPENDENCIES
   active_model_serializers
   bson_ext
   capistrano (~> 3.0)
+  capistrano-bundler
   capistrano-rbenv (~> 2.0)
-  capistrano-unicorn
+  capistrano-unicorn!
   coffee-rails (~> 4.0.0)
   mongoid!
   pry-rails

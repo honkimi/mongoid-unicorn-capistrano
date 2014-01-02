@@ -34,7 +34,8 @@ gem 'unicorn'
 group :development do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rbenv', '~> 2.0'
-  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano-bundler'
+  gem 'capistrano-unicorn', require: false, github: 'inbeom/capistrano-unicorn', branch: 'capistrano3'
 end
 
 # Use debugger

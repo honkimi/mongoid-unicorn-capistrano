@@ -1,6 +1,3 @@
-require 'capistrano-unicorn'
-require 'capistrano/rbenv'
-
 set :application, 'mongoid-unicorn-capistrano'
 set :repo_url, 'https://github.com/honkimi/mongoid-unicorn-capistrano.git'
 
@@ -21,10 +18,13 @@ set :repo_url, 'https://github.com/honkimi/mongoid-unicorn-capistrano.git'
 
 set :rbenv_type, :system # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.0-rc1'
+set :rbenv_path, '/opt/rbenv' 
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
+set :unicorn_rack_env, :production
+set :unicorn_bin, 'unicorn_rails'
 
 namespace :deploy do
 
