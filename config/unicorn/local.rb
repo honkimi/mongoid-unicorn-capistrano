@@ -5,7 +5,8 @@ app_path = Dir.pwd
 worker_processes 1
 preload_app true
 timeout 180
-listen "127.0.0.1:9000"
+listen "/tmp/unicorn.app.sock"
+pid "#{app_path}/tmp/pids/unicorn.pid"
 
 # Spawn unicorn master worker for user apps (group: apps)
 user 'unicorn', 'unicorn' 
@@ -22,15 +23,4 @@ stdout_path "log/unicorn.log"
 
 # Set master PID location
 pid "#{app_path}/tmp/pids/unicorn.pid"
-
-before_fork do |server, worker|
-  old_pid = "#{server.config[:pid]}.oldbin"
-  if File.exists?(old_pid) && server.pid != old_pid
-    begin
-      Process.kill("QUIT", File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH
-      # someone else did our job for us
-    end
-  end
-end
 
