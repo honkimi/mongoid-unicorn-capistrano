@@ -60,3 +60,5 @@ after 'deploy:restart', 'unicorn:restart'
 # before_fork hook implemented (zero downtime deployments)
 after 'deploy:restart', 'unicorn:duplicate' 
 
+after 'deploy:restart', 'nginx:restart' 
+
