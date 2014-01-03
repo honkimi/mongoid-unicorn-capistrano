@@ -33,15 +33,6 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
   task :setup_config do
     on roles(:app) do
       execute :sudo,  "ln -nfs #{current_path}/config/nginx.conf /usr/local/nginx/sites-enabled/#{fetch(:application)}"
@@ -50,6 +41,16 @@ namespace :deploy do
   after "deploy:symlink:release", "deploy:setup_config"
 
   after :finishing, 'deploy:cleanup'
+end
+
+namespace :nginx do
+
+  desc 'restart nginx'
+  task :restart do
+    on roles(:app) do
+      execute :sudo,  "service nginx restart"
+    end
+  end
 end
 
 # app IS NOT preloaded
