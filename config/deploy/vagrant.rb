@@ -1,9 +1,9 @@
 set :stage, :vagrant
 set :unicorn_env, "vagrant"
 
-role :app, %w{unicorn@127.0.0.1}
-role :web, %w{unicorn@127.0.0.1}
-role :db,  %w{unicorn@127.0.0.1}
+role :app, %w{vagrant@vagrant}
+role :web, %w{vagrant@vagrant}
+role :db,  %w{vagrant@vagrant}
 
 set :ssh_options, :port => "2222"
 

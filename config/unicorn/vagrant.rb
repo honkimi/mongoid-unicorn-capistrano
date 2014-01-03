@@ -9,7 +9,7 @@ listen "/tmp/unicorn.app.sock"
 pid "#{app_path}/tmp/pids/unicorn.pid"
 
 # Spawn unicorn master worker for user apps (group: apps)
-user 'unicorn', 'unicorn' 
+user 'vagrant', 'vagrant' 
 
 # Fill path to your app
 working_directory app_path

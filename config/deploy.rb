@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/honkimi/mongoid-unicorn-capistrano.git'
 
 # set :format, :pretty
 # set :log_level, :debug
-# set :pty, true
+set :pty, true
 
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -44,10 +44,10 @@ namespace :deploy do
 
   task :setup_config do
     on roles(:app) do
-      sudo "ln -nfs #{current_path}/config/nginx.conf /usr/local/nginx/sites-enabled/#{fetch(:application)}"
+      execute :sudo,  "ln -nfs #{current_path}/config/nginx.conf /usr/local/nginx/sites-enabled/#{fetch(:application)}"
     end
   end
-  after "deploy:started", "deploy:setup_config"
+  after "deploy:symlink:release", "deploy:setup_config"
 
   after :finishing, 'deploy:cleanup'
 end
